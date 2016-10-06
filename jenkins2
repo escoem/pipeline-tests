@@ -1,4 +1,5 @@
 node {
+    echo 'two'
     checkout scm
     def utils = load('second.groovy')
     def ret = utils.main()
