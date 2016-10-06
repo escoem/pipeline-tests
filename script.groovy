@@ -4,6 +4,6 @@ import org.jenkinsci.*;
 @NonCPS 
 def main(){ 
   println("Hello") 
-  return 
+  //return 
 } 
-//return this 
+return this 
