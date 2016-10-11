@@ -1,5 +1,5 @@
 node {
     checkout scm
-    def utils = load('second.groovy')
+    def utils = load('script.groovy')
     def ret = utils.main()
 }
