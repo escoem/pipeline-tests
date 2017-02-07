@@ -43,7 +43,7 @@ node {
        def jobValue2 = "job13"
 
         stage 'load qa2 pipeline'
-        load 'two-files/Jenkinsfile.QA2'
+        load 'two-pipes/Jenkinsfile.QA2'
 
    }
  }
