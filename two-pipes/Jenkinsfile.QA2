@@ -4,7 +4,7 @@ node {
 
     def buildNumber = env.BUILD_NUMBER
     def branch = "job13"
-currentBuild.displayName = "\QA2  $buildNumber" 
+currentBuild.displayName = "QA2  $buildNumber" 
     currentBuild.description = "QA2 desc@2017-02-06-17:23:12"
 
 stage 'initialize QA2'
