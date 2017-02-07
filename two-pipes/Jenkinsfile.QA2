@@ -1,51 +1,32 @@
 {->
+    node {
+        def buildNumber = env.BUILD_NUMBER
+        def branch = "job13"
+        currentBuild.displayName = "QA2  $buildNumber" 
+        currentBuild.description = "QA2 desc@2017-02-06-17:23:12"
 
-node {
+        stage 'initialize QA2'
 
-    def buildNumber = env.BUILD_NUMBER
-    def branch = "job13"
-currentBuild.displayName = "QA2  $buildNumber" 
-    currentBuild.description = "QA2 desc@2017-02-06-17:23:12"
+        ws('/tmp/shared/repo_rapps') {
+            // some block
 
-stage 'initialize QA2'
+            stage 'build  QA Cluster QA2'
+            def jobValue = "job13"
 
- ws('/tmp/shared/repo_rapps') {
-    // some block
+            stage 'update repos on  target QA1 environment'
 
+            sshagent(credentials: ['955df68f-6268-408a-8aa9-dcc50b2d84c0'], ignoreMissing: true) {
+                stage 'install apps search head'
+                stage 'restart search head QA2'
+                stage 'install index apps'
+                stage 'validate bundle QA2'
+                stage 'show bundle status QA2'
+                stage 'apply bundle index'
+                stage 'show bundle status'
+            }
+        }
 
-
-stage 'build  QA Cluster QA2'
-   def jobValue = "job13"
-
-   stage 'update repos on  target QA1 environment'
-
-
-   sshagent(credentials: ['955df68f-6268-408a-8aa9-dcc50b2d84c0'], ignoreMissing: true) {
-stage 'install apps search head'
-
-   stage 'restart search head QA2'
-
-   stage 'install index apps'
-
-   stage 'validate bundle QA2'
-
-   stage 'show bundle status QA2'
-   stage 'apply bundle index'
-
-
-   stage 'show bundle status'
-
-   }
-
- }
-
-
-   stage 'run python test kit QA2'
-   def jobValue2 = "job13"
-
-
-
- }
-
-}
+        stage 'run python test kit QA2'
+        def jobValue2 = "job13"
+    }
 }
