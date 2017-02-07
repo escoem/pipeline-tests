@@ -16,36 +16,34 @@ node {
             
             checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '955df68f-6268-408a-8aa9-dcc50b2d84c0', url: 'git@github.com:escoem/pipeline-tests.git']]]
 
+            stage 'build QA'
+            def jobValue = "job13"
 
+            stage 'update repos on target QA1 environment'
 
-   stage 'build QA'
-   def jobValue = "job13"
+            sshagent(credentials: ['955df68f-6268-408a-8aa9-dcc50b2d84c0'], ignoreMissing: true) {
+                stage 'installx apps search head'
 
-   stage 'update repos on target QA1 environment'
+                stage 'restart search head 2'
 
-   sshagent(credentials: ['955df68f-6268-408a-8aa9-dcc50b2d84c0'], ignoreMissing: true) {
-      stage 'installx apps search head'
-
-   stage 'restart search head 2'
-
-   stage 'install index apps'
+                stage 'install index apps'
              
-   stage 'show bundle status'
+                stage 'show bundle status'
 
-   stage 'apply bundles index'
+                stage 'apply bundles index'
 
-   stage 'show bundle status'
+                stage 'show bundle status'
 
-   }
+            }
 
 
-       stage 'run python test kit'
-       def jobValue2 = "job13"
+            stage 'run python test kit'
+            def jobValue2 = "job13"
 
-        stage 'load qa2 pipeline'
-        load 'two-pipes/Jenkinsfile.QA2'
+            stage 'load qa2 pipeline'
+            load 'two-pipes/Jenkinsfile.QA2'
 
-   }
- }
+        }
+    }
 
 }()
