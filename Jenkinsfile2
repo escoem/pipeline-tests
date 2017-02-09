@@ -1,0 +1,13 @@
+#!groovy 
+node { 
+  deleteDir() 
+  checkout scm 
+  try { 
+    def test = load('test.groovy') 
+    test.build() 
+  } catch(e) { 
+    throw(e) 
+  } finally { 
+    //sh "env" 
+  } 
+}
